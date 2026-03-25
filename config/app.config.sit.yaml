@@ -1,0 +1,34 @@
+# Application Configuration
+app:
+  port: 3001
+  nodeEnv: sit
+  apiBaseUrl: ${API_BASE_URL:https://sit-api.yourdomain.com}
+
+# Database Configuration
+db:
+  type: mysql
+  host: ${DB_HOST:your-sit-db-host}
+  port: ${DB_PORT:3306}
+  username: ${DB_USERNAME:your-username}
+  password: ${DB_PASSWORD:your-password}
+  database: ${DB_NAME:koa_next_app}
+  synchronize: false
+
+# Redis Configuration
+redis:
+  host: ${REDIS_HOST:your-sit-redis-host}
+  port: ${REDIS_PORT:6379}
+  password: ${REDIS_PASSWORD:your-redis-password}
+  db: ${REDIS_DB:0}
+
+# JWT Configuration
+jwt:
+  secret: ${JWT_SECRET:your-sit-jwt-secret-key}
+  refreshSecret: ${JWT_REFRESH_SECRET:your-sit-jwt-refresh-secret-key}
+  expiresIn: 15m
+  refreshExpiresIn: 7d
+
+# Throttle Configuration
+throttle:
+  ttl: 60000
+  limit: 100

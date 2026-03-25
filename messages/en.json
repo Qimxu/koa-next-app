@@ -1,0 +1,306 @@
+{
+  "locale": "en",
+  "common": {
+    "appName": "KoaNext",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "confirm": "Confirm",
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "create": "Create",
+    "search": "Search",
+    "submit": "Submit",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "noData": "No data available",
+    "required": "This field is required",
+    "or": "Or",
+    "showPassword": "Show password",
+    "hidePassword": "Hide password"
+  },
+  "nav": {
+    "home": "Home",
+    "login": "Login",
+    "register": "Register",
+    "logout": "Logout",
+    "account": "Account"
+  },
+  "auth": {
+    "signIn": "Sign In",
+    "signUp": "Sign Up",
+    "signOut": "Sign Out",
+    "signInTitle": "Sign in to your account",
+    "signUpTitle": "Create your account",
+    "email": "Email address",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "name": "Name",
+    "fullName": "Full Name",
+    "rememberMe": "Remember me",
+    "forgotPassword": "Forgot password?",
+    "noAccount": "Don't have an account?",
+    "hasAccount": "Already have an account?",
+    "createAccount": "Create account",
+    "orContinueWith": "Or continue with",
+    "loginSuccess": "Login successful",
+    "logoutSuccess": "Logout successful",
+    "registerSuccess": "Registration successful",
+    "invalidCredentials": "Invalid email or password",
+    "emailRequired": "Email is required",
+    "passwordRequired": "Password is required",
+    "nameRequired": "Name is required",
+    "passwordMinLength": "Must be at least {min} characters",
+    "passwordMismatch": "Passwords do not match",
+    "emailExists": "Email already registered",
+    "backToHome": "Back to Home",
+    "loginFailed": "Login failed. Please check your credentials.",
+    "registerFailed": "Registration failed. Please try again.",
+    "forgotPasswordTitle": "Reset your password",
+    "forgotPasswordDesc": "Enter the email address you registered with and we'll send you a password reset link.",
+    "sendResetLink": "Send reset link",
+    "resetLinkSent": "Email sent",
+    "resetLinkSentDesc": "A password reset link has been sent to {email}. Please check your inbox (and spam folder).",
+    "backToLogin": "Back to login",
+    "resetEmailFailed": "Failed to send. Please verify your email address is correct.",
+    "sending": "Sending...",
+    "resendEmail": "Resend email",
+    "resetStep1": "Open your email inbox",
+    "resetStep2": "Click the reset link (valid for 1 hour)",
+    "resetStep3": "Set a new password and sign in",
+    "verifyingToken": "Verifying link...",
+    "resetSuccess": "Password Reset Successful",
+    "resetSuccessDesc": "Your password has been successfully reset. Please sign in with your new password.",
+    "resetPassword": "Reset Password",
+    "resetPasswordTitle": "Set New Password",
+    "resetPasswordDesc": "Set a new password for {email}",
+    "newPassword": "New Password",
+    "agreeTerms": "I agree to the",
+    "termsOfService": "Terms of Service",
+    "privacyPolicy": "Privacy Policy",
+    "and": "and",
+    "resetLinkInstruction": "Click the link below to reset your password:",
+    "copyLink": "Copy link"
+  },
+  "api": {
+    "title": "API",
+    "endpoints": "API Endpoints",
+    "health": "Health Check",
+    "redis": "Redis Test",
+    "documentation": "API Documentation",
+    "checkHealth": "Check Health",
+    "testRedis": "Test Redis",
+    "viewDocs": "View Docs"
+  },
+  "validation": {
+    "required": "{field} is required",
+    "email": "Please enter a valid email",
+    "minLength": "{field} must be at least {min} characters",
+    "maxLength": "{field} must be at most {max} characters",
+    "passwordMatch": "Passwords do not match"
+  },
+  "notFound": {
+    "badge": "Page Not Found",
+    "title": "Lost in the Void",
+    "description": "The page you're looking for doesn't exist or has been moved to another dimension.",
+    "returnHome": "Return to Home",
+    "goBack": "Go Back",
+    "status": "Status",
+    "error": "Error",
+    "namespace": "Namespace"
+  },
+  "errors": {
+    "generic": "Something went wrong",
+    "network": "Network error. Please check your connection",
+    "unauthorized": "You are not authorized. Please login",
+    "forbidden": "Access denied",
+    "notFound": "Resource not found",
+    "serverError": "Server error. Please try again later",
+    "invalidToken": "Invalid or expired link",
+    "INVALID_CREDENTIALS": "Invalid email or password",
+    "ACCOUNT_DISABLED": "Account has been disabled"
+  },
+  "home": {
+    "badge": "Lightweight Full-Stack Solution",
+    "title": "Koa + Next.js",
+    "description": "A modern full-stack application template using Koa.js with native SQL for high-performance backend, and Next.js 14 for elegant frontend. No ORM overhead, transparent and controllable code.",
+    "techStack": "Tech Stack",
+    "cta": {
+      "tryNow": "Try Now",
+      "learnMore": "Learn More",
+      "getStarted": "Get Started",
+      "github": "GitHub Repository",
+      "login": "Login to Experience"
+    },
+    "coreFeatures": {
+      "badge": "Core Features",
+      "title": "Why KoaNext",
+      "subtitle": "Compared to traditional full-stack solutions, we're lighter, more transparent, and easier to customize",
+      "problemLabel": "Problem",
+      "solutionLabel": "Solution",
+      "lightweight": {
+        "icon": "🚀",
+        "title": "Lightweight Backend",
+        "description": "Built on Koa.js, lighter and more efficient than traditional frameworks. No cumbersome dependency injection or decorators, code is more intuitive and easier to understand.",
+        "highlight": "Native SQL + connection pool, no ORM performance overhead",
+        "problem": "NestJS is too heavy, TypeORM has performance bottlenecks",
+        "solution": "Koa minimalist core + MySQL2 native queries"
+      },
+      "nativeSQL": {
+        "icon": "⚡",
+        "title": "Native SQL Operations",
+        "description": "Use MySQL2 connection pool to directly operate the database. No need to learn ORM syntax, write SQL as you query, better performance.",
+        "highlight": "Transparent, controllable, high-performance data access layer",
+        "problem": "ORM black box, complex queries hard to optimize",
+        "solution": "Native SQL + parameterized queries, safe and efficient"
+      },
+      "auth": {
+        "icon": "🔐",
+        "title": "Complete Auth System",
+        "description": "JWT dual-token mechanism + Redis storage, supports complete flows including login, registration, token refresh, and password reset.",
+        "highlight": "Plug-and-play identity authentication solution",
+        "problem": "Implementing auth system yourself is time-consuming",
+        "solution": "Out-of-the-box authentication middleware and services"
+      },
+      "frontend": {
+        "icon": "🎨",
+        "title": "Modern Frontend Architecture",
+        "description": "Next.js 14 App Router + React Server Components, supports SSR streaming rendering, faster first-screen loading.",
+        "highlight": "Internationalized routing + server-side data prefetching",
+        "problem": "SPA has poor SEO and slow first-screen loading",
+        "solution": "Next.js SSR + intelligent data fetching"
+      }
+    },
+    "codeExamples": {
+      "title": "Code Examples",
+      "subtitle": "Clean, intuitive, and maintainable code style",
+      "nativeSQL": "Native SQL Query",
+      "jwtMiddleware": "JWT Auth Middleware",
+      "apiResponse": "Unified Response Format"
+    },
+    "uiShowcases": {
+      "title": "UI Highlights",
+      "subtitle": "Carefully designed user interface, excellence in details",
+      "passwordToggle": {
+        "icon": "👁️",
+        "title": "Password Visibility Toggle",
+        "description": "Built-in eye icon in input field, one-click toggle password visibility"
+      },
+      "formValidation": {
+        "icon": "✅",
+        "title": "Form Validation",
+        "description": "Zod real-time validation with friendly error messages"
+      },
+      "i18n": {
+        "icon": "🌍",
+        "title": "Multi-language Support",
+        "description": "Route-based internationalization, seamless Chinese/English switching"
+      },
+      "darkTheme": {
+        "icon": "🌙",
+        "title": "Dark Theme",
+        "description": "Carefully designed dark UI, eye-friendly"
+      }
+    },
+    "features": {
+      "title": "Features",
+      "subtitle": "Enterprise-grade features out of the box",
+      "koa": {
+        "icon": "🦅",
+        "title": "Koa.js",
+        "description": "Next-generation Node.js web framework, onion model middleware, native async/await support."
+      },
+      "nextjs": {
+        "icon": "⚛️",
+        "title": "Next.js 14",
+        "description": "React framework with App Router, Server Components, and streaming rendering."
+      },
+      "database": {
+        "icon": "🗄️",
+        "title": "MySQL + Redis",
+        "description": "MySQL for data storage, Redis for token blacklist and session state management."
+      },
+      "jwt": {
+        "icon": "🔒",
+        "title": "JWT Authentication",
+        "description": "Access Token + Refresh Token dual-token mechanism, secure and reliable."
+      },
+      "i18n": {
+        "icon": "🌐",
+        "title": "Internationalization",
+        "description": "Complete i18n support based on next-intl, seamless Chinese/English switching."
+      },
+      "typescript": {
+        "icon": "📘",
+        "title": "TypeScript",
+        "description": "Full-stack TypeScript, type-safe with better development experience."
+      }
+    },
+    "architecture": {
+      "title": "Architecture",
+      "subtitle": "Frontend-backend separation with clear responsibilities, easy to maintain and extend",
+      "frontend": {
+        "title": "Frontend",
+        "tech": "Next.js 14",
+        "items": [
+          "App Router + React Server Components",
+          "SSR first-screen rendering, SEO-friendly",
+          "Tailwind CSS atomic styling"
+        ]
+      },
+      "backend": {
+        "title": "Backend",
+        "tech": "Koa.js",
+        "items": [
+          "Native SQL + MySQL2 connection pool",
+          "JWT auth + Redis token management",
+          "Onion model middleware architecture"
+        ]
+      }
+    },
+    "quickStart": {
+      "title": "Quick Start",
+      "subtitle": "Three steps to launch your full-stack project",
+      "step1": {
+        "step": "01",
+        "title": "Clone Project",
+        "desc": "Clone the project from GitHub to your local machine",
+        "command": "git clone https://github.com/your/koa-next-app.git"
+      },
+      "step2": {
+        "step": "02",
+        "title": "Configure Environment",
+        "desc": "Copy environment file and modify configuration",
+        "command": "cp .env.example .env && npm install"
+      },
+      "step3": {
+        "step": "03",
+        "title": "Start Development",
+        "desc": "Start Docker services and run migrations",
+        "command": "docker-compose up -d && npm run db:migrate"
+      }
+    },
+    "finalCta": {
+      "title": "Start Building Your Next Project",
+      "description": "Use the KoaNext template to quickly launch full-stack development, focus on business logic instead of infrastructure."
+    },
+    "footer": {
+      "tagline": "Lightweight full-stack application template, perfect combination of Koa.js + Next.js.",
+      "product": "Product",
+      "resources": "Resources",
+      "contact": "Contact",
+      "links": {
+        "features": "Features",
+        "coreFeatures": "Core Advantages",
+        "architecture": "Architecture",
+        "koa": "Koa.js Website",
+        "nextjs": "Next.js Website",
+        "mysql2": "MySQL2 Docs"
+      },
+      "copyright": "© {year} KoaNext. All rights reserved."
+    }
+  }
+}

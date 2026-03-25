@@ -1,0 +1,666 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "KoaNext API",
+    "description": "Koa + Next.js 全栈应用 API 文档",
+    "version": "1.0.0",
+    "contact": {
+      "name": "API Support",
+      "email": "support@koanext.app"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3001",
+      "description": "本地开发服务器"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Health",
+      "description": "健康检查接口"
+    },
+    {
+      "name": "Auth",
+      "description": "认证相关接口"
+    },
+    {
+      "name": "Users",
+      "description": "用户管理接口"
+    }
+  ],
+  "paths": {
+    "/health": {
+      "get": {
+        "tags": ["Health"],
+        "summary": "健康检查",
+        "description": "检查服务及数据库连接状态",
+        "responses": {
+          "200": {
+            "description": "服务正常运行",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HealthResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/health/live": {
+      "get": {
+        "tags": ["Health"],
+        "summary": "存活检查",
+        "description": "Kubernetes 存活探针",
+        "responses": {
+          "200": {
+            "description": "服务存活",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": { "type": "string", "example": "alive" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/login": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "用户登录",
+        "description": "使用邮箱和密码登录，返回 JWT Token",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "登录成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoginResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "认证失败",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/register": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "用户注册",
+        "description": "创建新用户账户",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "注册成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "请求参数错误",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/refresh": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "刷新 Token",
+        "description": "使用 Refresh Token 获取新的 Access Token",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RefreshRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "刷新成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TokenResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/logout": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "用户登出",
+        "description": "注销当前用户，使 Token 失效",
+        "security": [{ "bearerAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "登出成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuccessResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/forgot-password": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "忘记密码",
+        "description": "发送密码重置邮件",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ForgotPasswordRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "邮件已发送",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuccessResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/verify-reset-token": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "验证重置令牌",
+        "description": "验证密码重置链接的有效性",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VerifyTokenRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "令牌有效",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuccessResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/reset-password": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "重置密码",
+        "description": "使用重置令牌设置新密码",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResetPasswordRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "密码重置成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuccessResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users": {
+      "get": {
+        "tags": ["Users"],
+        "summary": "获取用户列表",
+        "description": "获取所有用户列表（仅管理员）",
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "页码",
+            "schema": { "type": "integer", "default": 1 }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "每页数量",
+            "schema": { "type": "integer", "default": 10 }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "获取成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UsersListResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "无权限",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Users"],
+        "summary": "创建用户",
+        "description": "创建新用户（仅管理员）",
+        "security": [{ "bearerAuth": [] }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateUserRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "创建成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/profile": {
+      "get": {
+        "tags": ["Users"],
+        "summary": "获取当前用户信息",
+        "description": "获取登录用户的详细信息",
+        "security": [{ "bearerAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "获取成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/{id}": {
+      "get": {
+        "tags": ["Users"],
+        "summary": "获取指定用户",
+        "description": "根据 ID 获取用户信息（仅管理员）",
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "用户 ID",
+            "schema": { "type": "integer" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "获取成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "用户不存在",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": ["Users"],
+        "summary": "更新用户",
+        "description": "更新指定用户信息（仅管理员）",
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "用户 ID",
+            "schema": { "type": "integer" }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateUserRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "更新成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Users"],
+        "summary": "删除用户",
+        "description": "删除指定用户（仅管理员）",
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "用户 ID",
+            "schema": { "type": "integer" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "删除成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuccessResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "User": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer", "example": 1 },
+          "name": { "type": "string", "example": "John Doe" },
+          "email": { "type": "string", "format": "email", "example": "john@example.com" },
+          "role": { "type": "string", "enum": ["admin", "user"], "example": "user" },
+          "isActive": { "type": "boolean", "example": true },
+          "createdAt": { "type": "string", "format": "date-time", "example": "2024-01-15T08:30:00.000Z" },
+          "updatedAt": { "type": "string", "format": "date-time", "example": "2024-01-15T08:30:00.000Z" }
+        },
+        "required": ["id", "name", "email", "role"]
+      },
+      "LoginRequest": {
+        "type": "object",
+        "properties": {
+          "email": { "type": "string", "format": "email", "example": "user@example.com" },
+          "password": { "type": "string", "format": "password", "example": "password123" }
+        },
+        "required": ["email", "password"]
+      },
+      "LoginResponse": {
+        "type": "object",
+        "properties": {
+          "code": { "type": "integer", "example": 200 },
+          "data": {
+            "type": "object",
+            "properties": {
+              "user": { "$ref": "#/components/schemas/User" },
+              "accessToken": { "type": "string", "example": "eyJhbGciOiJIUzI1NiIs..." },
+              "refreshToken": { "type": "string", "example": "eyJhbGciOiJIUzI1NiIs..." }
+            }
+          },
+          "message": { "type": "string", "example": "success" },
+          "timestamp": { "type": "string", "format": "date-time" }
+        }
+      },
+      "RegisterRequest": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string", "example": "John Doe" },
+          "email": { "type": "string", "format": "email", "example": "john@example.com" },
+          "password": { "type": "string", "format": "password", "example": "password123" }
+        },
+        "required": ["name", "email", "password"]
+      },
+      "RefreshRequest": {
+        "type": "object",
+        "properties": {
+          "refreshToken": { "type": "string", "example": "eyJhbGciOiJIUzI1NiIs..." }
+        },
+        "required": ["refreshToken"]
+      },
+      "TokenResponse": {
+        "type": "object",
+        "properties": {
+          "code": { "type": "integer", "example": 200 },
+          "data": {
+            "type": "object",
+            "properties": {
+              "accessToken": { "type": "string" },
+              "refreshToken": { "type": "string" }
+            }
+          },
+          "message": { "type": "string", "example": "success" }
+        }
+      },
+      "ForgotPasswordRequest": {
+        "type": "object",
+        "properties": {
+          "email": { "type": "string", "format": "email", "example": "user@example.com" }
+        },
+        "required": ["email"]
+      },
+      "VerifyTokenRequest": {
+        "type": "object",
+        "properties": {
+          "token": { "type": "string", "example": "reset-token-string" }
+        },
+        "required": ["token"]
+      },
+      "ResetPasswordRequest": {
+        "type": "object",
+        "properties": {
+          "token": { "type": "string", "example": "reset-token-string" },
+          "password": { "type": "string", "format": "password", "example": "newpassword123" }
+        },
+        "required": ["token", "password"]
+      },
+      "CreateUserRequest": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string", "example": "John Doe" },
+          "email": { "type": "string", "format": "email", "example": "john@example.com" },
+          "password": { "type": "string", "format": "password", "example": "password123" },
+          "role": { "type": "string", "enum": ["admin", "user"], "example": "user" }
+        },
+        "required": ["name", "email", "password"]
+      },
+      "UpdateUserRequest": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string", "example": "John Doe" },
+          "email": { "type": "string", "format": "email", "example": "john@example.com" },
+          "role": { "type": "string", "enum": ["admin", "user"], "example": "user" },
+          "isActive": { "type": "boolean", "example": true }
+        }
+      },
+      "UserResponse": {
+        "type": "object",
+        "properties": {
+          "code": { "type": "integer", "example": 200 },
+          "data": { "$ref": "#/components/schemas/User" },
+          "message": { "type": "string", "example": "success" },
+          "timestamp": { "type": "string", "format": "date-time" }
+        }
+      },
+      "UsersListResponse": {
+        "type": "object",
+        "properties": {
+          "code": { "type": "integer", "example": 200 },
+          "data": {
+            "type": "object",
+            "properties": {
+              "users": {
+                "type": "array",
+                "items": { "$ref": "#/components/schemas/User" }
+              },
+              "total": { "type": "integer", "example": 100 },
+              "page": { "type": "integer", "example": 1 },
+              "limit": { "type": "integer", "example": 10 }
+            }
+          },
+          "message": { "type": "string", "example": "success" }
+        }
+      },
+      "HealthResponse": {
+        "type": "object",
+        "properties": {
+          "code": { "type": "integer", "example": 200 },
+          "data": {
+            "type": "object",
+            "properties": {
+              "status": { "type": "string", "example": "healthy" },
+              "database": { "type": "string", "example": "connected" },
+              "redis": { "type": "string", "example": "connected" },
+              "timestamp": { "type": "string", "format": "date-time" }
+            }
+          },
+          "message": { "type": "string", "example": "success" }
+        }
+      },
+      "SuccessResponse": {
+        "type": "object",
+        "properties": {
+          "code": { "type": "integer", "example": 200 },
+          "data": { "type": "object" },
+          "message": { "type": "string", "example": "success" },
+          "timestamp": { "type": "string", "format": "date-time" }
+        }
+      },
+      "ErrorResponse": {
+        "type": "object",
+        "properties": {
+          "code": { "type": "integer", "example": 400 },
+          "message": { "type": "string", "example": "Bad Request" },
+          "error": { "type": "string", "example": "INVALID_CREDENTIALS" },
+          "timestamp": { "type": "string", "format": "date-time" }
+        }
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT",
+        "description": "JWT Token 认证，格式: Bearer {token}"
+      }
+    }
+  }
+}

@@ -1,0 +1,35 @@
+# Application Configuration
+app:
+  port: ${PORT:3001}
+  nodeEnv: production
+  apiBaseUrl: ${API_BASE_URL:https://api.yourdomain.com}
+
+# Database Configuration
+db:
+  type: mysql
+  host: ${DB_HOST:your-db-host}
+  port: ${DB_PORT:3306}
+  username: ${DB_USERNAME:your-username}
+  password: ${DB_PASSWORD:your-password}
+  database: ${DB_NAME:koa_next_app}
+  synchronize: false
+
+# Redis Configuration
+redis:
+  host: ${REDIS_HOST:your-redis-host}
+  port: ${REDIS_PORT:6379}
+  password: ${REDIS_PASSWORD:}
+  db: ${REDIS_DB:0}
+
+# JWT Configuration
+# ⚠️ 生产环境必须通过环境变量设置安全的 JWT_SECRET 和 JWT_REFRESH_SECRET（至少32位）
+jwt:
+  secret: ${JWT_SECRET}
+  refreshSecret: ${JWT_REFRESH_SECRET}
+  expiresIn: 15m
+  refreshExpiresIn: 7d
+
+# Throttle Configuration
+throttle:
+  ttl: 60000
+  limit: 100

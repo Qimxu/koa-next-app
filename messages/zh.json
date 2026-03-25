@@ -1,0 +1,306 @@
+{
+  "locale": "zh",
+  "common": {
+    "appName": "KoaNext",
+    "loading": "加载中...",
+    "error": "错误",
+    "success": "成功",
+    "confirm": "确认",
+    "cancel": "取消",
+    "save": "保存",
+    "delete": "删除",
+    "edit": "编辑",
+    "create": "创建",
+    "search": "搜索",
+    "submit": "提交",
+    "back": "返回",
+    "next": "下一步",
+    "previous": "上一步",
+    "noData": "暂无数据",
+    "required": "此字段为必填项",
+    "or": "或",
+    "showPassword": "显示密码",
+    "hidePassword": "隐藏密码"
+  },
+  "nav": {
+    "home": "首页",
+    "login": "登录",
+    "register": "注册",
+    "logout": "退出登录",
+    "account": "账户"
+  },
+  "auth": {
+    "signIn": "登录",
+    "signUp": "注册",
+    "signOut": "退出登录",
+    "signInTitle": "登录您的账户",
+    "signUpTitle": "创建您的账户",
+    "email": "邮箱地址",
+    "password": "密码",
+    "confirmPassword": "确认密码",
+    "name": "姓名",
+    "fullName": "姓名",
+    "rememberMe": "记住我",
+    "forgotPassword": "忘记密码？",
+    "noAccount": "还没有账户？",
+    "hasAccount": "已有账户？",
+    "createAccount": "立即注册",
+    "orContinueWith": "或使用以下方式继续",
+    "loginSuccess": "登录成功",
+    "logoutSuccess": "退出登录成功",
+    "registerSuccess": "注册成功",
+    "invalidCredentials": "邮箱或密码错误",
+    "emailRequired": "请输入邮箱",
+    "passwordRequired": "请输入密码",
+    "nameRequired": "请输入姓名",
+    "passwordMinLength": "至少需要 {min} 个字符",
+    "passwordMismatch": "两次密码输入不一致",
+    "emailExists": "邮箱已被注册",
+    "backToHome": "返回首页",
+    "loginFailed": "登录失败，请检查您的凭证。",
+    "registerFailed": "注册失败，请重试。",
+    "forgotPasswordTitle": "重置您的密码",
+    "forgotPasswordDesc": "输入您注册时使用的邮箱，我们将向您发送密码重置链接。",
+    "sendResetLink": "发送重置链接",
+    "resetLinkSent": "邮件已发送",
+    "resetLinkSentDesc": "密码重置链接已发送至 {email}，请检查您的收件箱（和垃圾邮件文件夹）。",
+    "backToLogin": "返回登录",
+    "resetEmailFailed": "发送失败，请检查邮箱地址是否正确。",
+    "sending": "发送中...",
+    "resendEmail": "重新发送",
+    "resetStep1": "打开您的邮箱",
+    "resetStep2": "点击重置链接（1 小时内有效）",
+    "resetStep3": "设置新密码并登录",
+    "verifyingToken": "正在验证链接...",
+    "resetSuccess": "密码重置成功",
+    "resetSuccessDesc": "您的密码已成功重置，请使用新密码登录。",
+    "resetPassword": "重置密码",
+    "resetPasswordTitle": "设置新密码",
+    "resetPasswordDesc": "为 {email} 设置一个新密码",
+    "newPassword": "新密码",
+    "agreeTerms": "我同意",
+    "termsOfService": "服务条款",
+    "privacyPolicy": "隐私政策",
+    "and": "和",
+    "resetLinkInstruction": "点击以下链接重置密码：",
+    "copyLink": "复制链接"
+  },
+  "api": {
+    "title": "API",
+    "endpoints": "API 端点",
+    "health": "健康检查",
+    "redis": "Redis 测试",
+    "documentation": "API 文档",
+    "checkHealth": "检查健康状态",
+    "testRedis": "测试 Redis",
+    "viewDocs": "查看文档"
+  },
+  "validation": {
+    "required": "{field} 为必填项",
+    "email": "请输入有效的邮箱地址",
+    "minLength": "{field} 至少需要 {min} 个字符",
+    "maxLength": "{field} 最多 {max} 个字符",
+    "passwordMatch": "两次密码输入不一致"
+  },
+  "notFound": {
+    "badge": "页面未找到",
+    "title": "迷失在虚空",
+    "description": "您访问的页面不存在，或已被移动到其他位置。",
+    "returnHome": "返回首页",
+    "goBack": "返回上页",
+    "status": "状态",
+    "error": "错误",
+    "namespace": "命名空间"
+  },
+  "errors": {
+    "generic": "发生错误",
+    "network": "网络错误，请检查您的连接",
+    "unauthorized": "未授权，请先登录",
+    "forbidden": "访问被拒绝",
+    "notFound": "资源未找到",
+    "serverError": "服务器错误，请稍后重试",
+    "invalidToken": "链接无效或已过期",
+    "INVALID_CREDENTIALS": "账号或密码不存在",
+    "ACCOUNT_DISABLED": "账号已被禁用"
+  },
+  "home": {
+    "badge": "轻量级全栈解决方案",
+    "title": "Koa + Next.js",
+    "description": "一个现代化的全栈应用模板，使用 Koa.js 原生 SQL 构建高性能后端，Next.js 14 构建优雅前端，无 ORM 负担，代码更透明可控。",
+    "techStack": "技术栈",
+    "cta": {
+      "tryNow": "立即体验",
+      "learnMore": "了解更多",
+      "getStarted": "开始使用",
+      "github": "GitHub 仓库",
+      "login": "登录体验"
+    },
+    "coreFeatures": {
+      "badge": "核心特性",
+      "title": "为什么选择 KoaNext",
+      "subtitle": "相比传统全栈方案，我们更轻量、更透明、更易定制",
+      "problemLabel": "痛点",
+      "solutionLabel": "方案",
+      "lightweight": {
+        "icon": "🚀",
+        "title": "轻量级后端",
+        "description": "基于 Koa.js 构建，相比传统框架更轻量、更高效，没有繁琐的依赖注入和装饰器，代码更直观易懂。",
+        "highlight": "原生 SQL + 连接池，无 ORM 性能损耗",
+        "problem": "NestJS 过重，TypeORM 性能瓶颈",
+        "solution": "Koa 极简核心 + MySQL2 原生查询"
+      },
+      "nativeSQL": {
+        "icon": "⚡",
+        "title": "原生 SQL 操作",
+        "description": "使用 MySQL2 连接池直接操作数据库，无需学习 ORM 语法，SQL 怎么写就怎么查，性能更优。",
+        "highlight": "透明、可控、高性能的数据访问层",
+        "problem": "ORM 黑盒、复杂查询难以优化",
+        "solution": "原生 SQL + 参数化查询，安全又高效"
+      },
+      "auth": {
+        "icon": "🔐",
+        "title": "完整的认证体系",
+        "description": "JWT 双 Token 机制 + Redis 存储，支持登录、注册、刷新令牌、密码重置等完整流程。",
+        "highlight": "接入即用的身份认证解决方案",
+        "problem": "自己实现认证系统费时费力",
+        "solution": "开箱即用的认证中间件和服务"
+      },
+      "frontend": {
+        "icon": "🎨",
+        "title": "现代前端架构",
+        "description": "Next.js 14 App Router + React Server Components，支持 SSR 流式渲染，首屏加载更快。",
+        "highlight": "国际化路由 + 服务端预取数据",
+        "problem": "单页应用 SEO 差、首屏慢",
+        "solution": "Next.js SSR + 智能数据获取"
+      }
+    },
+    "codeExamples": {
+      "title": "代码示例",
+      "subtitle": "简洁、直观、易维护的代码风格",
+      "nativeSQL": "原生 SQL 查询",
+      "jwtMiddleware": "JWT 认证中间件",
+      "apiResponse": "统一响应格式"
+    },
+    "uiShowcases": {
+      "title": "UI 亮点",
+      "subtitle": "精心设计的用户界面，细节之处见真章",
+      "passwordToggle": {
+        "icon": "👁️",
+        "title": "密码可见切换",
+        "description": "输入框内置眼睛图标，一键切换密码可见性"
+      },
+      "formValidation": {
+        "icon": "✅",
+        "title": "表单验证",
+        "description": "Zod 实时验证，友好的错误提示"
+      },
+      "i18n": {
+        "icon": "🌍",
+        "title": "多语言支持",
+        "description": "基于路由的国际化，中英文无缝切换"
+      },
+      "darkTheme": {
+        "icon": "🌙",
+        "title": "暗黑主题",
+        "description": "精心设计的暗黑 UI，保护视力"
+      }
+    },
+    "features": {
+      "title": "功能特性",
+      "subtitle": "开箱即用的企业级功能",
+      "koa": {
+        "icon": "🦅",
+        "title": "Koa.js",
+        "description": "下一代 Node.js Web 框架，洋葱模型中间件，async/await 原生支持。"
+      },
+      "nextjs": {
+        "icon": "⚛️",
+        "title": "Next.js 14",
+        "description": "React 框架，支持 App Router、Server Components、流式渲染。"
+      },
+      "database": {
+        "icon": "🗄️",
+        "title": "MySQL + Redis",
+        "description": "MySQL 存储数据，Redis 管理 Token 黑名单和会话状态。"
+      },
+      "jwt": {
+        "icon": "🔒",
+        "title": "JWT 认证",
+        "description": "Access Token + Refresh Token 双令牌机制，安全可靠。"
+      },
+      "i18n": {
+        "icon": "🌐",
+        "title": "国际化",
+        "description": "基于 next-intl 的完整 i18n 支持，中英文无缝切换。"
+      },
+      "typescript": {
+        "icon": "📘",
+        "title": "TypeScript",
+        "description": "全栈 TypeScript，类型安全，开发体验更佳。"
+      }
+    },
+    "architecture": {
+      "title": "架构设计",
+      "subtitle": "前后端分离，职责清晰，易于维护扩展",
+      "frontend": {
+        "title": "前端",
+        "tech": "Next.js 14",
+        "items": [
+          "App Router + React Server Components",
+          "SSR 首屏渲染，SEO 友好",
+          "Tailwind CSS 原子化样式"
+        ]
+      },
+      "backend": {
+        "title": "后端",
+        "tech": "Koa.js",
+        "items": [
+          "原生 SQL + MySQL2 连接池",
+          "JWT 认证 + Redis Token 管理",
+          "洋葱模型中间件架构"
+        ]
+      }
+    },
+    "quickStart": {
+      "title": "快速开始",
+      "subtitle": "三步启动你的全栈项目",
+      "step1": {
+        "step": "01",
+        "title": "克隆项目",
+        "desc": "从 GitHub 克隆项目到本地",
+        "command": "git clone https://github.com/your/koa-next-app.git"
+      },
+      "step2": {
+        "step": "02",
+        "title": "配置环境",
+        "desc": "复制环境变量文件并修改配置",
+        "command": "cp .env.example .env && npm install"
+      },
+      "step3": {
+        "step": "03",
+        "title": "启动开发",
+        "desc": "启动 Docker 服务并运行迁移",
+        "command": "docker-compose up -d && npm run db:migrate"
+      }
+    },
+    "finalCta": {
+      "title": "开始构建你的下一个项目",
+      "description": "使用 KoaNext 模板，快速启动全栈开发，专注于业务逻辑而非基础设施。"
+    },
+    "footer": {
+      "tagline": "轻量级全栈应用模板，Koa.js + Next.js 的完美结合。",
+      "product": "产品",
+      "resources": "资源",
+      "contact": "联系",
+      "links": {
+        "features": "功能特性",
+        "coreFeatures": "核心优势",
+        "architecture": "架构设计",
+        "koa": "Koa.js 官网",
+        "nextjs": "Next.js 官网",
+        "mysql2": "MySQL2 文档"
+      },
+      "copyright": "© {year} KoaNext. All rights reserved."
+    }
+  }
+}

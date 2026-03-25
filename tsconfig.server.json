@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "ES2021",
+    "lib": ["esnext"],
+    "outDir": "./dist",
+    "rootDir": ".",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "moduleResolution": "node",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./*"],
+      "@/core/*": ["src/core/*"],
+      "@/modules/*": ["src/modules/*"]
+    },
+    "sourceMap": true
+  },
+  "include": ["src/**/*", "scripts/**/*", "test/**/*"],
+  "exclude": ["node_modules", "dist", ".next"]
+}
