@@ -7,15 +7,26 @@
 
 ## [未发布]
 
-### 新增
+### 升级
 
-- 初始项目结构搭建
-- Koa.js + Next.js 全栈集成
-- 用户认证系统（注册、登录、JWT）
-- MySQL 数据库支持（原生 SQL）
-- Redis 缓存支持
-- Docker 容器化部署
-- CI/CD 工作流配置
+- **Next.js 14 → Next.js 16**
+  - 升级至最新稳定版 Next.js 16
+  - 启用 Turbopack 开发模式，启动速度提升 10 倍
+  - 改进的开发体验和更快的 HMR
+  - 更好的并行路由支持
+  - 优化的构建性能
+- **ESLint 配置更新**
+  - 配置文件迁移至 `eslint.config.mjs`
+  - 支持 ES Module 规范
+- **依赖更新**
+  - `next`: ^14.x → ^16.2.1
+  - `eslint-config-next`: ^14.x → ^16.2.1
+  - `@eslint/eslintrc`: ^3.x (新版 ESLint 支持)
+
+### 优化
+
+- 首页 Hero 区域更新版本号标识 (Next.js 16)
+- 文档同步更新技术栈版本信息
 
 ## [1.0.0] - 2024-XX-XX
 
@@ -38,7 +49,7 @@
 
 - Node.js 18+
 - Koa.js 2.x
-- Next.js 14
+- Next.js 16
 - MySQL 8.0
 - Redis 6.0
 - TypeScript 5.x

@@ -126,7 +126,7 @@
   "home": {
     "badge": "Lightweight Full-Stack Solution",
     "title": "Koa + Next.js",
-    "description": "A modern full-stack application template using Koa.js with native SQL for high-performance backend, and Next.js 14 for elegant frontend. No ORM overhead, transparent and controllable code.",
+    "description": "A modern full-stack application template using Koa.js with native SQL for high-performance backend, and Next.js 16 with Turbopack for elegant frontend. No ORM overhead, transparent and controllable code.",
     "welcome": "Welcome back",
     "techStack": "Tech Stack",
     "cta": {
@@ -170,10 +170,10 @@
       "frontend": {
         "icon": "🎨",
         "title": "Modern Frontend Architecture",
-        "description": "Next.js 14 App Router + React Server Components, supports SSR streaming rendering, faster first-screen loading.",
-        "highlight": "Internationalized routing + server-side data prefetching",
+        "description": "Next.js 16 with Turbopack + React Server Components, supports SSR streaming rendering, faster first-screen loading, and 10x faster dev server.",
+        "highlight": "Turbopack HMR + Internationalized routing + Server-side data prefetching",
         "problem": "SPA has poor SEO and slow first-screen loading",
-        "solution": "Next.js SSR + intelligent data fetching"
+        "solution": "Next.js 16 SSR + Turbopack + intelligent data fetching"
       }
     },
     "codeExamples": {
@@ -217,8 +217,8 @@
       },
       "nextjs": {
         "icon": "⚛️",
-        "title": "Next.js 14",
-        "description": "React framework with App Router, Server Components, and streaming rendering."
+        "title": "Next.js 16",
+        "description": "React framework with Turbopack, App Router, Server Components, and streaming rendering. 10x faster dev server."
       },
       "database": {
         "icon": "🗄️",
@@ -246,11 +246,11 @@
       "subtitle": "Frontend-backend separation with clear responsibilities, easy to maintain and extend",
       "frontend": {
         "title": "Frontend",
-        "tech": "Next.js 14",
+        "tech": "Next.js 16 + Turbopack",
         "items": [
           "App Router + React Server Components",
-          "SSR first-screen rendering, SEO-friendly",
-          "Tailwind CSS atomic styling"
+          "Turbopack 10x faster HMR",
+          "SSR first-screen rendering, SEO-friendly"
         ]
       },
       "backend": {
@@ -290,7 +290,7 @@
       "description": "Use the KoaNext template to quickly launch full-stack development, focus on business logic instead of infrastructure."
     },
     "footer": {
-      "tagline": "Lightweight full-stack application template, perfect combination of Koa.js + Next.js.",
+      "tagline": "Lightweight full-stack application template, perfect combination of Koa.js + Next.js 16 with Turbopack.",
       "product": "Product",
       "resources": "Resources",
       "contact": "Contact",

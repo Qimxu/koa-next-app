@@ -126,7 +126,7 @@
   "home": {
     "badge": "轻量级全栈解决方案",
     "title": "Koa + Next.js",
-    "description": "一个现代化的全栈应用模板，使用 Koa.js 原生 SQL 构建高性能后端，Next.js 14 构建优雅前端，无 ORM 负担，代码更透明可控。",
+    "description": "一个现代化的全栈应用模板，使用 Koa.js 原生 SQL 构建高性能后端，Next.js 16 配合 Turbopack 构建极速前端，无 ORM 负担，代码更透明可控。",
     "welcome": "欢迎回来",
     "techStack": "技术栈",
     "cta": {
@@ -170,10 +170,10 @@
       "frontend": {
         "icon": "🎨",
         "title": "现代前端架构",
-        "description": "Next.js 14 App Router + React Server Components，支持 SSR 流式渲染，首屏加载更快。",
-        "highlight": "国际化路由 + 服务端预取数据",
-        "problem": "单页应用 SEO 差、首屏慢",
-        "solution": "Next.js SSR + 智能数据获取"
+        "description": "Next.js 16 配合 Turbopack，支持 SSR 流式渲染，开发服务器启动速度提升 10 倍，首屏加载更快。",
+        "highlight": "Turbopack 极速 HMR + 国际化路由 + 服务端预取数据",
+        "problem": "单页应用 SEO 差、首屏慢、开发慢",
+        "solution": "Next.js 16 SSR + Turbopack + 智能数据获取"
       }
     },
     "codeExamples": {
@@ -217,8 +217,8 @@
       },
       "nextjs": {
         "icon": "⚛️",
-        "title": "Next.js 14",
-        "description": "React 框架，支持 App Router、Server Components、流式渲染。"
+        "title": "Next.js 16",
+        "description": "React 框架，支持 Turbopack、App Router、Server Components、流式渲染，开发速度提升 10 倍。"
       },
       "database": {
         "icon": "🗄️",
@@ -246,11 +246,11 @@
       "subtitle": "前后端分离，职责清晰，易于维护扩展",
       "frontend": {
         "title": "前端",
-        "tech": "Next.js 14",
+        "tech": "Next.js 16 + Turbopack",
         "items": [
           "App Router + React Server Components",
-          "SSR 首屏渲染，SEO 友好",
-          "Tailwind CSS 原子化样式"
+          "Turbopack 开发服务器提速 10 倍",
+          "SSR 首屏渲染，SEO 友好"
         ]
       },
       "backend": {
@@ -286,7 +286,7 @@
       "description": "使用 KoaNext 模板，快速启动全栈开发，专注于业务逻辑而非基础设施。"
     },
     "footer": {
-      "tagline": "轻量级全栈应用模板，Koa.js + Next.js 的完美结合。",
+      "tagline": "轻量级全栈应用模板，Koa.js + Next.js 16 配合 Turbopack 的完美结合。",
       "product": "产品",
       "resources": "资源",
       "contact": "联系",

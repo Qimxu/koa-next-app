@@ -7,7 +7,7 @@ import type { User } from '@/services/users';
 
 const techStack = [
   { name: 'Koa.js', color: '#fafafa', tag: 'Backend' },
-  { name: 'Next.js 14', color: '#0ea5e9', tag: 'Frontend' },
+  { name: 'Next.js 16', color: '#0ea5e9', tag: 'Frontend' },
   { name: 'TypeScript', color: '#38bdf8', tag: 'Language' },
   { name: 'MySQL', color: '#4479A1', tag: 'Database' },
   { name: 'Redis', color: '#DC382D', tag: 'Cache' },

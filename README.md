@@ -23,13 +23,16 @@
 
 ### 前端 (Next.js)
 
-- **Next.js 14** - React 框架
+- **Next.js 16** - React 框架，内置 Turbopack
+  - ⚡ **Turbopack** - 开发服务器启动速度提升 10 倍
+  - 🔥 **极速 HMR** - 热更新几乎即时响应
+  - 📦 **优化构建** - 更快的生产构建
 - **TypeScript** - 类型安全
 - **Tailwind CSS** - 原子化 CSS
 - **next-intl** - 国际化 (i18n)
 - **Zustand** - 状态管理
 
-## 项目结构
+## 为什么选择 KoaNext？
 
 ```
 koa-next-app/
