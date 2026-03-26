@@ -69,7 +69,6 @@ async function loadModuleRouters(modulesDir: string): Promise<Router[]> {
 function printRoutes(router: Router): void {
   logger.info(`🚀 API Routes built at: ${BASE_URL}`);
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const stack = (router as any).stack || [];
   const routes: string[] = [];
 

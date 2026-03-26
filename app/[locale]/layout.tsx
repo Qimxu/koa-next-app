@@ -32,7 +32,7 @@ interface ServerUser {
  */
 async function getServerUser(): Promise<ServerUser | null> {
   try {
-    const cookieStore = cookies();
+    const cookieStore = await cookies();
     const accessToken = cookieStore.get('access_token')?.value;
 
     if (!accessToken) return null;
@@ -93,9 +93,9 @@ export default async function LocaleLayout({
   params,
 }: {
   children: ReactNode;
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }) {
-  const { locale } = params;
+  const { locale } = await params;
 
   if (!isValidLocale(locale)) {
     notFound();

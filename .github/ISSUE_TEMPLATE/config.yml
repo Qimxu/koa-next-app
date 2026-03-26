@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 提问 (Q&A)
+    url: https://github.com/Qimxu/koa-next-app/discussions
+    about: 如果你有使用问题，请在 Discussions 中提问
+  - name: 查看文档
+    url: https://github.com/Qimxu/koa-next-app#readme
+    about: 在提问前请先查看 README 文档

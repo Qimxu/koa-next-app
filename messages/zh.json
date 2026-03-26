@@ -266,7 +266,7 @@
         "step": "01",
         "title": "克隆项目",
         "desc": "从 GitHub 克隆项目到本地",
-        "command": "git clone https://github.com/your/koa-next-app.git"
+        "command": "git clone https://github.com/Qimxu/koa-next-app.git"
       },
       "step2": {
         "step": "02",

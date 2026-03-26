@@ -32,4 +32,4 @@ jwt:
 # Throttle Configuration
 throttle:
   ttl: 60000
-  limit: 100
+  limit: 5000

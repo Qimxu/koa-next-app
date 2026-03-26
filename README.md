@@ -1,5 +1,10 @@
 # Koa Next App
 
+[![CI](https://github.com/yourusername/koa-next-app/actions/workflows/ci.yml/badge.svg)](https://github.com/yourusername/koa-next-app/actions/workflows/ci.yml)
+[![PR Checks](https://github.com/yourusername/koa-next-app/actions/workflows/pr.yml/badge.svg)](https://github.com/yourusername/koa-next-app/actions/workflows/pr.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Node.js Version](https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen.svg)](https://nodejs.org/)
+
 一个基于 **Koa.js** 后端和 **Next.js** 前端的全栈应用模板，使用原生 SQL 操作数据库。
 
 > 本项目由 [koa-next-app](https://github.com/Qimxu/koa-next-app) 重构而来，将后端从 NestJS 替换为 Koa.js，数据库操作从 TypeORM 替换为原生 MySQL2。
@@ -167,44 +172,44 @@ CREATE TABLE password_resets (
 
 ### 认证接口
 
-| 方法 | 路径 | 描述 |
-|------|------|------|
-| POST | `/auth/login` | 用户登录 |
-| POST | `/auth/register` | 用户注册 |
-| POST | `/auth/refresh` | 刷新 Token |
-| POST | `/auth/logout` | 用户登出 |
-| POST | `/auth/forgot-password` | 忘记密码 |
+| 方法 | 路径                       | 描述         |
+| ---- | -------------------------- | ------------ |
+| POST | `/auth/login`              | 用户登录     |
+| POST | `/auth/register`           | 用户注册     |
+| POST | `/auth/refresh`            | 刷新 Token   |
+| POST | `/auth/logout`             | 用户登出     |
+| POST | `/auth/forgot-password`    | 忘记密码     |
 | POST | `/auth/verify-reset-token` | 验证重置令牌 |
-| POST | `/auth/reset-password` | 重置密码 |
+| POST | `/auth/reset-password`     | 重置密码     |
 
 ### 用户接口
 
-| 方法 | 路径 | 描述 | 权限 |
-|------|------|------|------|
-| GET | `/users` | 获取用户列表 | admin |
-| GET | `/users/profile` | 获取当前用户信息 | 已登录 |
-| GET | `/users/:id` | 获取指定用户 | admin |
-| POST | `/users` | 创建用户 | admin |
-| PATCH | `/users/:id` | 更新用户 | admin |
-| DELETE | `/users/:id` | 删除用户 | admin |
+| 方法   | 路径             | 描述             | 权限   |
+| ------ | ---------------- | ---------------- | ------ |
+| GET    | `/users`         | 获取用户列表     | admin  |
+| GET    | `/users/profile` | 获取当前用户信息 | 已登录 |
+| GET    | `/users/:id`     | 获取指定用户     | admin  |
+| POST   | `/users`         | 创建用户         | admin  |
+| PATCH  | `/users/:id`     | 更新用户         | admin  |
+| DELETE | `/users/:id`     | 删除用户         | admin  |
 
 ### 健康检查
 
-| 方法 | 路径 | 描述 |
-|------|------|------|
-| GET | `/health` | 服务健康检查 |
-| GET | `/health/live` | 存活检查 |
+| 方法 | 路径           | 描述         |
+| ---- | -------------- | ------------ |
+| GET  | `/health`      | 服务健康检查 |
+| GET  | `/health/live` | 存活检查     |
 
 ## 与 NestJS 版本的差异
 
-| 特性 | NestJS 版本 | Koa 版本 |
-|------|-------------|----------|
-| 框架 | NestJS + TypeORM | Koa + 原生 SQL |
+| 特性       | NestJS 版本        | Koa 版本            |
+| ---------- | ------------------ | ------------------- |
+| 框架       | NestJS + TypeORM   | Koa + 原生 SQL      |
 | 数据库操作 | TypeORM Repository | MySQL2 连接池 + SQL |
-| 依赖注入 | 内置 IoC 容器 | 手动导入模块 |
-| 装饰器 | 大量使用 | 仅用于工具函数 |
-| 架构复杂度 | 高（模块化） | 低（扁平化） |
-| 性能 | 中等 | 更高（无 ORM 开销）|
+| 依赖注入   | 内置 IoC 容器      | 手动导入模块        |
+| 装饰器     | 大量使用           | 仅用于工具函数      |
+| 架构复杂度 | 高（模块化）       | 低（扁平化）        |
+| 性能       | 中等               | 更高（无 ORM 开销） |
 
 ## 数据库操作示例
 
@@ -212,30 +217,18 @@ CREATE TABLE password_resets (
 
 ```typescript
 // 查询单个用户
-const [user] = await db.query<UserRow[]>(
-  'SELECT id, name, email FROM users WHERE id = ?',
-  [id]
-);
+const [user] = await db.query<UserRow[]>('SELECT id, name, email FROM users WHERE id = ?', [id]);
 
 // 查询列表（分页）
-const users = await db.query<UserRow[]>(
-  'SELECT * FROM users LIMIT ? OFFSET ?',
-  [limit, offset]
-);
+const users = await db.query<UserRow[]>('SELECT * FROM users LIMIT ? OFFSET ?', [limit, offset]);
 ```
 
 ### 事务
 
 ```typescript
-await db.transaction(async (connection) => {
-  await connection.execute(
-    'INSERT INTO users (name, email) VALUES (?, ?)',
-    [name, email]
-  );
-  await connection.execute(
-    'INSERT INTO logs (action) VALUES (?)',
-    ['create_user']
-  );
+await db.transaction(async connection => {
+  await connection.execute('INSERT INTO users (name, email) VALUES (?, ?)', [name, email]);
+  await connection.execute('INSERT INTO logs (action) VALUES (?)', ['create_user']);
 });
 ```
 
@@ -275,7 +268,7 @@ services:
   app:
     build: .
     ports:
-      - "3001:3001"
+      - '3001:3001'
     environment:
       - NODE_ENV=production
       - DB_HOST=mysql
@@ -301,6 +294,19 @@ volumes:
   mysql_data:
   redis_data:
 ```
+
+## 项目链接
+
+- [📖 文档](https://github.com/Qimxu/koa-next-app#readme)
+- [🐛 问题报告](https://github.com/Qimxu/koa-next-app/issues)
+- [💡 功能建议](https://github.com/Qimxu/koa-next-app/issues)
+- [🤝 贡献指南](./CONTRIBUTING.md)
+- [🔒 安全政策](./SECURITY.md)
+- [📜 更新日志](./CHANGELOG.md)
+
+## 贡献
+
+我们欢迎各种形式的贡献！请参阅 [贡献指南](./CONTRIBUTING.md) 了解如何参与项目。
 
 ## 许可证
 
