@@ -24,7 +24,7 @@
     "db:migrate:rollback": "knex migrate:rollback",
     "db:migrate:make": "knex migrate:make",
     "db:seed": "knex seed:run",
-    "prepare": "husky"
+    "prepare": "husky || true"
   },
   "lint-staged": {
     "*.{ts,tsx}": [
