@@ -13,6 +13,9 @@
     "start:prod": "NODE_ENV=production node dist/server.js",
     "clean": "rm -rf dist .next",
     "lint": "eslint . --ext .ts,.tsx",
+    "lint:fix": "eslint . --ext .ts,.tsx --fix",
+    "format": "prettier --write \"src/**/*.{ts,tsx}\" \"app/**/*.{ts,tsx}\" \"lib/**/*.{ts,tsx}\" \"components/**/*.{ts,tsx}\" \"services/**/*.{ts,tsx}\" \"messages/**/*.json\" \"test/**/*.{ts,tsx}\"",
+    "format:check": "prettier --check \"src/**/*.{ts,tsx}\" \"app/**/*.{ts,tsx}\" \"lib/**/*.{ts,tsx}\" \"components/**/*.{ts,tsx}\" \"services/**/*.{ts,tsx}\" \"messages/**/*.json\" \"test/**/*.{ts,tsx}\"",
     "typecheck": "tsc --noEmit && tsc --noEmit --project tsconfig.server.json",
     "test": "jest",
     "test:watch": "jest --watch",
@@ -20,7 +23,21 @@
     "db:migrate": "knex migrate:latest",
     "db:migrate:rollback": "knex migrate:rollback",
     "db:migrate:make": "knex migrate:make",
-    "db:seed": "knex seed:run"
+    "db:seed": "knex seed:run",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{js,jsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md}": [
+      "prettier --write"
+    ]
   },
   "dependencies": {
     "bcrypt": "^5.1.1",
@@ -49,6 +66,8 @@
     "zustand": "^4.5.2"
   },
   "devDependencies": {
+    "@commitlint/cli": "^19.8.0",
+    "@commitlint/config-conventional": "^19.8.0",
     "@csstools/postcss-oklab-function": "^5.0.2",
     "@types/bcrypt": "^5.0.2",
     "@types/jest": "^30.0.0",
@@ -74,7 +93,9 @@
     "eslint-config-next": "^14.2.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.5.5",
+    "husky": "^9.1.7",
     "jest": "^30.3.0",
+    "lint-staged": "^15.5.2",
     "nodemon": "^3.1.0",
     "postcss": "^8.4.38",
     "prettier": "^3.2.5",
