@@ -16,7 +16,7 @@ const requests = new Map<string, RateLimitRecord>();
  */
 export const rateLimitMiddleware = (
   windowMs: number = config.security.rateLimitWindowMs,
-  maxRequests: number = config.security.rateLimitMax
+  maxRequests: number = config.security.rateLimitMax,
 ) => {
   return async (ctx: Context, next: Next) => {
     const key = ctx.ip;

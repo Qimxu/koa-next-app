@@ -48,5 +48,4 @@ export const mockContext = (overrides: Record<string, unknown> = {}) => {
 /**
  * 等待指定时间
  */
-export const wait = (ms: number): Promise<void> =>
-  new Promise((resolve) => setTimeout(resolve, ms));
+export const wait = (ms: number): Promise<void> => new Promise(resolve => setTimeout(resolve, ms));

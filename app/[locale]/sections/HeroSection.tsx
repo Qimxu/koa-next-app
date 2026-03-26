@@ -64,7 +64,7 @@ export default function HeroSection({ isVisible }: HeroSectionProps) {
             {t('home.techStack')}
           </p>
           <div className="flex flex-wrap items-center justify-center gap-3">
-            {techStack.map((tech) => (
+            {techStack.map(tech => (
               <div
                 key={tech.name}
                 className="flex items-center gap-2 px-4 py-2 bg-white/[0.03] border border-white/[0.06] hover:border-[#0ea5e9]/40 hover:bg-[#0ea5e9]/5 transition-all duration-300 rounded-xl group"

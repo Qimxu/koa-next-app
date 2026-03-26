@@ -61,7 +61,10 @@ export const corsMiddleware = async (ctx: Context, next: Next) => {
   }
 
   ctx.set('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE, OPTIONS');
-  ctx.set('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Request-ID, X-Refresh-Token');
+  ctx.set(
+    'Access-Control-Allow-Headers',
+    'Content-Type, Authorization, X-Request-ID, X-Refresh-Token',
+  );
   ctx.set('Access-Control-Allow-Credentials', 'true');
   ctx.set('Access-Control-Max-Age', '86400');
 

@@ -46,7 +46,7 @@ export default function ArchitectureSection() {
               </div>
             </div>
             <ul className="space-y-2 text-[#a3a3a3]">
-              {['0', '1', '2'].map((i) => (
+              {['0', '1', '2'].map(i => (
                 <li key={i} className="flex items-center gap-2">
                   <span className="w-1.5 h-1.5 bg-[#0ea5e9] rounded-full" />
                   {t(`home.architecture.frontend.items.${i}`)}
@@ -81,7 +81,7 @@ export default function ArchitectureSection() {
               </div>
             </div>
             <ul className="space-y-2 text-[#a3a3a3]">
-              {['0', '1', '2'].map((i) => (
+              {['0', '1', '2'].map(i => (
                 <li key={i} className="flex items-center gap-2">
                   <span className="w-1.5 h-1.5 bg-white/60 rounded-full" />
                   {t(`home.architecture.backend.items.${i}`)}

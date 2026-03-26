@@ -3,7 +3,11 @@ import { Context } from 'koa';
 import * as usersService from './users.service';
 import { NotFoundException, ForbiddenException } from '../../core/exceptions/http.exception';
 import { authMiddleware, requireRole } from '../../middlewares/auth.middleware';
-import { validateBody, validateQuery, validateParams } from '../../middlewares/validation.middleware';
+import {
+  validateBody,
+  validateQuery,
+  validateParams,
+} from '../../middlewares/validation.middleware';
 import {
   createUserSchema,
   updateUserSchema,
@@ -46,55 +50,40 @@ const requireAdmin = requireRole(['admin']);
  * 获取所有用户（分页）
  * GET /users
  */
-router.get(
-  '/',
-  requireAdmin,
-  validateQuery(paginationSchema),
-  async (ctx: Context) => {
-    const query = ctx.state.validatedQuery as PaginationDto;
-    const page = typeof query.page === 'number' ? query.page : 1;
-    const limit = typeof query.limit === 'number' ? query.limit : 10;
-    const result = await usersService.findAllPaginated(page, limit);
-    ctx.success(result);
-  }
-);
+router.get('/', requireAdmin, validateQuery(paginationSchema), async (ctx: Context) => {
+  const query = ctx.state.validatedQuery as PaginationDto;
+  const page = typeof query.page === 'number' ? query.page : 1;
+  const limit = typeof query.limit === 'number' ? query.limit : 10;
+  const result = await usersService.findAllPaginated(page, limit);
+  ctx.success(result);
+});
 
 /**
  * 根据 ID 获取用户
  * GET /users/:id
  */
-router.get(
-  '/:id',
-  requireAdmin,
-  validateParams(paramsIdSchema),
-  async (ctx: Context) => {
-    const params = ctx.state.validatedParams as ParamsIdDto;
-    const id = parseInt(params.id, 10);
+router.get('/:id', requireAdmin, validateParams(paramsIdSchema), async (ctx: Context) => {
+  const params = ctx.state.validatedParams as ParamsIdDto;
+  const id = parseInt(params.id, 10);
 
-    const user = await usersService.findById(id);
-    if (!user) {
-      throw new NotFoundException('User not found');
-    }
-
-    ctx.success(user);
+  const user = await usersService.findById(id);
+  if (!user) {
+    throw new NotFoundException('User not found');
   }
-);
+
+  ctx.success(user);
+});
 
 /**
  * 创建用户
  * POST /users
  */
-router.post(
-  '/',
-  requireAdmin,
-  validateBody(createUserSchema),
-  async (ctx: Context) => {
-    const input = ctx.state.validatedBody as CreateUserDto;
-    const user = await usersService.createUser(input);
-    ctx.status = 201;
-    ctx.success(user, 'User created successfully');
-  }
-);
+router.post('/', requireAdmin, validateBody(createUserSchema), async (ctx: Context) => {
+  const input = ctx.state.validatedBody as CreateUserDto;
+  const user = await usersService.createUser(input);
+  ctx.status = 201;
+  ctx.success(user, 'User created successfully');
+});
 
 /**
  * 更新用户
@@ -112,29 +101,24 @@ router.patch(
 
     const user = await usersService.updateUser(id, input);
     ctx.success(user, 'User updated successfully');
-  }
+  },
 );
 
 /**
  * 删除用户
  * DELETE /users/:id
  */
-router.delete(
-  '/:id',
-  requireAdmin,
-  validateParams(paramsIdSchema),
-  async (ctx: Context) => {
-    const params = ctx.state.validatedParams as ParamsIdDto;
-    const id = parseInt(params.id, 10);
+router.delete('/:id', requireAdmin, validateParams(paramsIdSchema), async (ctx: Context) => {
+  const params = ctx.state.validatedParams as ParamsIdDto;
+  const id = parseInt(params.id, 10);
 
-    const currentUser = ctx.state.user;
-    if (currentUser?.id === id) {
-      throw new ForbiddenException('Cannot delete your own account');
-    }
-
-    await usersService.deleteUser(id);
-    ctx.success(null, 'User deleted successfully');
+  const currentUser = ctx.state.user;
+  if (currentUser?.id === id) {
+    throw new ForbiddenException('Cannot delete your own account');
   }
-);
+
+  await usersService.deleteUser(id);
+  ctx.success(null, 'User deleted successfully');
+});
 
 export { router as usersRouter };

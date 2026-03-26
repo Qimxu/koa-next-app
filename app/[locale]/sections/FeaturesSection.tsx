@@ -47,9 +47,7 @@ export default function FeaturesSection() {
             {t('home.features.title')}
             <span className="text-[#0ea5e9]">/&gt;</span>
           </h2>
-          <p className="text-[#737373] text-lg max-w-2xl mx-auto">
-            {t('home.features.subtitle')}
-          </p>
+          <p className="text-[#737373] text-lg max-w-2xl mx-auto">{t('home.features.subtitle')}</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

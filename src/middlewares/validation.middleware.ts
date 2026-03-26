@@ -87,7 +87,9 @@ export const validateParams = <T>(schema: ZodSchema<T>) => {
  * 组合多个验证中间件
  * 用法: router.post('/', combineValidators(validateBody(schema), authMiddleware), handler)
  */
-export const combineValidators = (...middlewares: Array<(ctx: Context, next: Next) => Promise<void>>) => {
+export const combineValidators = (
+  ...middlewares: Array<(ctx: Context, next: Next) => Promise<void>>
+) => {
   return async (ctx: Context, next: Next) => {
     const executeMiddleware = async (index: number): Promise<void> => {
       if (index >= middlewares.length) {

@@ -197,7 +197,9 @@ export const forgotPassword = async (email: string): Promise<{ message: string }
   };
 };
 
-export const verifyResetToken = async (token: string): Promise<{ valid: boolean; email?: string }> => {
+export const verifyResetToken = async (
+  token: string,
+): Promise<{ valid: boolean; email?: string }> => {
   const userId = await redis.getPasswordResetToken(token);
 
   if (!userId) {

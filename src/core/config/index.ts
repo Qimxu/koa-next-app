@@ -30,7 +30,7 @@ function replaceEnvVars(obj: any): any {
   }
   if (obj !== null && typeof obj === 'object') {
     return Object.fromEntries(
-      Object.entries(obj).map(([key, value]) => [key, replaceEnvVars(value)])
+      Object.entries(obj).map(([key, value]) => [key, replaceEnvVars(value)]),
     );
   }
   return obj;
@@ -47,7 +47,7 @@ function loadYamlConfig(env: string): Record<string, any> {
 
   try {
     const content = readFileSync(configPath, 'utf-8');
-    const rawConfig = load(content) as Record<string, any> || {};
+    const rawConfig = (load(content) as Record<string, any>) || {};
     return replaceEnvVars(rawConfig);
   } catch (e) {
     throw new Error(`Failed to load config: ${configPath} - ${e}`);
@@ -67,7 +67,9 @@ if (env === 'production') {
     throw new Error('Production requires a secure JWT_SECRET (min 32 chars, not a placeholder)');
   }
   if (!jwtRefreshSecret || jwtRefreshSecret.includes('your-') || jwtRefreshSecret.length < 32) {
-    throw new Error('Production requires a secure JWT_REFRESH_SECRET (min 32 chars, not a placeholder)');
+    throw new Error(
+      'Production requires a secure JWT_REFRESH_SECRET (min 32 chars, not a placeholder)',
+    );
   }
 }
 

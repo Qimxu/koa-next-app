@@ -10,7 +10,6 @@ import {
   RegisterInput,
 } from '../auth.service';
 import * as usersService from '../../users/users.service';
-import * as databaseModule from '../../../core/utils/database';
 import * as redisModule from '../../../core/utils/redis';
 import * as jwtUtils from '../../../core/utils/jwt';
 import {
@@ -62,14 +61,11 @@ const createMockKnexChain = (): MockKnexChain => ({
 });
 
 // Create mock knex function that returns chain methods
-const mockKnexFn = Object.assign(
-  jest.fn(),
-  {
-    fn: {
-      now: jest.fn().mockReturnValue('2024-01-01 00:00:00'),
-    },
-  }
-);
+const mockKnexFn = Object.assign(jest.fn(), {
+  fn: {
+    now: jest.fn().mockReturnValue('2024-01-01 00:00:00'),
+  },
+});
 const mockKnexChain = createMockKnexChain();
 
 // Setup mock knex to return chain methods
@@ -214,9 +210,9 @@ describe('AuthService', () => {
 
     it('should throw error when email already exists', async () => {
       const { ConflictException } = await import('../../../core/exceptions/http.exception');
-      jest.spyOn(usersService, 'createUser').mockRejectedValue(
-        new ConflictException('User with this email already exists')
-      );
+      jest
+        .spyOn(usersService, 'createUser')
+        .mockRejectedValue(new ConflictException('User with this email already exists'));
 
       const input: RegisterInput = {
         name: 'New User',
@@ -280,7 +276,7 @@ describe('AuthService', () => {
       (redisModule.redis.getRefreshToken as jest.Mock).mockResolvedValue(null);
 
       await expect(refreshToken('blacklisted_token')).rejects.toThrow(
-        'Invalid or expired refresh token'
+        'Invalid or expired refresh token',
       );
     });
 
@@ -446,7 +442,7 @@ describe('AuthService', () => {
       (redisModule.redis.getPasswordResetToken as jest.Mock).mockResolvedValue(null);
 
       await expect(resetPassword('invalid_token', 'NewPassword123!')).rejects.toThrow(
-        BadRequestException
+        BadRequestException,
       );
     });
 
@@ -460,7 +456,7 @@ describe('AuthService', () => {
       jest.spyOn(usersService, 'findById').mockResolvedValue(null);
 
       await expect(resetPassword('valid_token', 'NewPassword123!')).rejects.toThrow(
-        NotFoundException
+        NotFoundException,
       );
     });
   });

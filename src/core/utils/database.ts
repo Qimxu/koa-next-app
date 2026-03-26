@@ -65,13 +65,15 @@ class Database {
       // 检查数据库是否存在
       const result = await tempKnex.raw(
         'SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = ?',
-        [dbName]
+        [dbName],
       );
 
       if (result[0].length === 0) {
         // 数据库不存在，创建它
         logger.info(`Database '${dbName}' not found, creating...`);
-        await tempKnex.raw(`CREATE DATABASE IF NOT EXISTS \`${dbName}\` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci`);
+        await tempKnex.raw(
+          `CREATE DATABASE IF NOT EXISTS \`${dbName}\` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci`,
+        );
         logger.info(`Database '${dbName}' created successfully`);
       } else {
         logger.info(`Database '${dbName}' already exists`);

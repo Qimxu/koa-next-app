@@ -34,13 +34,10 @@ export type UpdateUserDto = z.infer<typeof updateUserSchema>;
  * 分页查询 DTO
  */
 export const paginationSchema = z.object({
-  page: z.preprocess(
-    val => (val ? parseInt(String(val), 10) : 1),
-    z.number().min(1).default(1)
-  ),
+  page: z.preprocess(val => (val ? parseInt(String(val), 10) : 1), z.number().min(1).default(1)),
   limit: z.preprocess(
     val => (val ? parseInt(String(val), 10) : 10),
-    z.number().min(1).max(100).default(10)
+    z.number().min(1).max(100).default(10),
   ),
 });
 

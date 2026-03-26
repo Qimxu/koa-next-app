@@ -10,7 +10,6 @@ import {
   CreateUserInput,
 } from '../users.service';
 import { NotFoundException, ConflictException } from '../../../core/exceptions/http.exception';
-import type { Knex } from 'knex';
 
 // Mock helpers and logger
 jest.mock('../../../core/utils/helpers', () => ({
@@ -47,7 +46,7 @@ const mockChain: any = {
 
 const mockKnex = Object.assign(
   jest.fn(() => mockChain),
-  { fn: mockChain.fn }
+  { fn: mockChain.fn },
 );
 
 jest.mock('../../../core/utils/database', () => ({
@@ -199,17 +198,15 @@ describe('UsersService', () => {
       };
 
       // 第一次 first() 检查邮箱是否已存在，第二次获取插入后的用户
-      mockChain.first
-        .mockResolvedValueOnce(undefined)
-        .mockResolvedValueOnce({
-          id: 1,
-          name: 'New User',
-          email: 'new@example.com',
-          role: 'user',
-          is_active: true,
-          created_at: new Date(),
-          updated_at: new Date(),
-        });
+      mockChain.first.mockResolvedValueOnce(undefined).mockResolvedValueOnce({
+        id: 1,
+        name: 'New User',
+        email: 'new@example.com',
+        role: 'user',
+        is_active: true,
+        created_at: new Date(),
+        updated_at: new Date(),
+      });
       mockChain.insert.mockResolvedValueOnce([1]);
 
       const result = await createUser(input);
@@ -246,17 +243,15 @@ describe('UsersService', () => {
         password: 'Password123!',
       };
 
-      mockChain.first
-        .mockResolvedValueOnce(undefined)
-        .mockResolvedValueOnce({
-          id: 1,
-          name: 'New User',
-          email: 'new@example.com',
-          role: 'user',
-          is_active: true,
-          created_at: new Date(),
-          updated_at: new Date(),
-        });
+      mockChain.first.mockResolvedValueOnce(undefined).mockResolvedValueOnce({
+        id: 1,
+        name: 'New User',
+        email: 'new@example.com',
+        role: 'user',
+        is_active: true,
+        created_at: new Date(),
+        updated_at: new Date(),
+      });
       mockChain.insert.mockResolvedValueOnce([1]);
 
       await createUser(input);
@@ -322,7 +317,7 @@ describe('UsersService', () => {
         });
 
       await expect(updateUser(1, { email: 'taken@example.com' })).rejects.toThrow(
-        ConflictException
+        ConflictException,
       );
     });
   });
