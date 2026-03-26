@@ -2,7 +2,11 @@ import Router from 'koa-router';
 import { Context } from 'koa';
 import * as usersService from './users.service';
 import { NotFoundException, ForbiddenException } from '../../core/exceptions/http.exception';
-import { authMiddleware, requireRole } from '../../middlewares/auth.middleware';
+import {
+  authMiddleware,
+  requireRole,
+  optionalAuthMiddleware,
+} from '../../middlewares/auth.middleware';
 import {
   validateBody,
   validateQuery,
@@ -21,18 +25,20 @@ import {
 
 const router = new Router({ prefix: '/users' });
 
-// 所有用户路由都需要认证
-router.use(authMiddleware);
-
 /**
- * 获取当前用户资料
+ * 获取当前用户资料（支持公开访问）
  * GET /users/profile
  */
-router.get('/profile', async (ctx: Context) => {
+router.get('/profile', optionalAuthMiddleware, async (ctx: Context) => {
   const userId = ctx.state.user?.id;
 
   if (!userId) {
-    throw new ForbiddenException('Authentication required');
+    // 未登录返回公开信息
+    ctx.success({
+      isAuthenticated: false,
+      message: 'Please login to view your profile',
+    });
+    return;
   }
 
   const user = await usersService.findById(userId);
@@ -40,8 +46,12 @@ router.get('/profile', async (ctx: Context) => {
     throw new NotFoundException('User not found');
   }
 
+  // 已登录返回原有格式，保持与前端兼容
   ctx.success(user);
 });
+
+// 以下路由需要认证
+router.use(authMiddleware);
 
 // 以下路由需要 admin 角色
 const requireAdmin = requireRole(['admin']);

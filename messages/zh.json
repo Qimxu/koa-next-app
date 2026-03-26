@@ -127,13 +127,15 @@
     "badge": "轻量级全栈解决方案",
     "title": "Koa + Next.js",
     "description": "一个现代化的全栈应用模板，使用 Koa.js 原生 SQL 构建高性能后端，Next.js 14 构建优雅前端，无 ORM 负担，代码更透明可控。",
+    "welcome": "欢迎回来",
     "techStack": "技术栈",
     "cta": {
       "tryNow": "立即体验",
       "learnMore": "了解更多",
       "getStarted": "开始使用",
       "github": "GitHub 仓库",
-      "login": "登录体验"
+      "login": "登录体验",
+      "enterDashboard": "进入控制台"
     },
     "coreFeatures": {
       "badge": "核心特性",
@@ -254,11 +256,7 @@
       "backend": {
         "title": "后端",
         "tech": "Koa.js",
-        "items": [
-          "原生 SQL + MySQL2 连接池",
-          "JWT 认证 + Redis Token 管理",
-          "洋葱模型中间件架构"
-        ]
+        "items": ["原生 SQL + MySQL2 连接池", "JWT 认证 + Redis Token 管理", "洋葱模型中间件架构"]
       }
     },
     "quickStart": {

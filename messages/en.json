@@ -127,13 +127,15 @@
     "badge": "Lightweight Full-Stack Solution",
     "title": "Koa + Next.js",
     "description": "A modern full-stack application template using Koa.js with native SQL for high-performance backend, and Next.js 14 for elegant frontend. No ORM overhead, transparent and controllable code.",
+    "welcome": "Welcome back",
     "techStack": "Tech Stack",
     "cta": {
       "tryNow": "Try Now",
       "learnMore": "Learn More",
       "getStarted": "Get Started",
       "github": "GitHub Repository",
-      "login": "Login to Experience"
+      "login": "Login to Experience",
+      "enterDashboard": "Enter Dashboard"
     },
     "coreFeatures": {
       "badge": "Core Features",

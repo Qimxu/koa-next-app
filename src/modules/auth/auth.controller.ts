@@ -2,8 +2,10 @@ import Router from 'koa-router';
 import { Context } from 'koa';
 import * as authService from './auth.service';
 import { UnauthorizedException } from '../../core/exceptions/http.exception';
-import { authMiddleware } from '../../middlewares/auth.middleware';
+import { optionalAuthMiddleware } from '../../middlewares/auth.middleware';
 import { validateBody } from '../../middlewares/validation.middleware';
+import { verifyRefreshToken, getTokenExpiresInSeconds } from '../../core/utils/jwt';
+import { redis } from '../../core/utils/redis';
 import {
   loginSchema,
   registerSchema,
@@ -64,16 +66,65 @@ router.post('/refresh', validateBody(refreshTokenSchema), async (ctx: Context) =
 /**
  * 用户登出
  * POST /auth/logout
+ *
+ * 支持两种方式：
+ * 1. 通过 access_token (authMiddleware)
+ * 2. 通过 refresh_token cookie
  */
-router.post('/logout', authMiddleware, async (ctx: Context) => {
-  const user = ctx.state.user;
-  const token = ctx.state.token;
+router.post('/logout', optionalAuthMiddleware, async (ctx: Context) => {
+  let userId = ctx.state.user?.id;
+  let token = ctx.state.token;
 
-  if (!user || !token) {
+  // 如果 access_token 不存在，尝试从 refresh_token cookie 获取
+  if (!userId) {
+    const refreshToken = ctx.cookies.get('refresh_token');
+    if (!refreshToken) {
+      throw new UnauthorizedException('Authentication required');
+    }
+
+    try {
+      const payload = await verifyRefreshToken(refreshToken);
+      if (payload.type === 'refresh') {
+        userId = payload.sub;
+      }
+    } catch {
+      throw new UnauthorizedException('Invalid refresh token');
+    }
+
+    // 获取一个有效的 access token 来加入黑名单（从 cookie 或 header）
+    const accessToken = ctx.cookies.get('access_token');
+    if (accessToken) {
+      token = accessToken;
+    }
+  }
+
+  if (!userId) {
     throw new UnauthorizedException('Authentication required');
   }
 
-  await authService.logout(user.id, token);
+  // 如果有 token，加入黑名单
+  if (token) {
+    const ttl = getTokenExpiresInSeconds(token) || 3600;
+    await redis.setBlacklistToken(token, ttl);
+  }
+
+  // 清除该用户的所有 refresh tokens
+  await redis.removeAllUserRefreshTokens(userId);
+
+  // 清除 cookies
+  ctx.cookies.set('access_token', '', {
+    maxAge: 0,
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production',
+    sameSite: 'lax',
+  });
+  ctx.cookies.set('refresh_token', '', {
+    maxAge: 0,
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production',
+    sameSite: 'lax',
+  });
+
   ctx.success(null, 'Logged out successfully');
 });
 
